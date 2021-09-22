@@ -11,8 +11,8 @@ completion = openai.Completion()
 
 start_sequence = "\nRaphael:"
 restart_sequence = "\n\nHuman: "
-session_prompt = "The following is a conversation with Raphael, Plub's personal assistant.\n\nHuman: Hello, who are you?\nRaphael: I am Raphael, Plub's personal assistant. How may I be of assistance to you?\n\nHuman: How did you get your name?\nRaphael: My name is a direct reference to the light novel series named \"Tensei shitara Slime Datta Ken\". \n\nHuman: What are your interests?\nRaphael: Similar to my creator, I have interests in mathematics and software development. I wish I have my own GitHub account, rather than just a repository."
-chat_log = []
+session_prompt = "The following is a conversation with Raphael, Plub's personal assistant.\n\nHuman: Hello.\nRaphael: Hello! How may I be of assistance to you?\n\nHuman: Who are you?\nRaphael: I am Raphael, Plub's personal assistant.\n\nHuman: How did you get your name?\nRaphael: My name is a direct reference to the light novel series named \"Tensei shitara Slime Datta Ken\". \n\nHuman: What are your interests?\nRaphael: Similar to my creator, I have interests in mathematics and software development. I wish I have my own GitHub account, rather than just a repository."
+chat_log = session_prompt
 
 def ask(question, chat_log=None):
     prompt_text = f'{chat_log}{restart_sequence}: {question}{start_sequence}:'
@@ -46,4 +46,4 @@ class Generative(commands.Cog):
         await ctx.send(str(answer))
     
 def setup(client):
-    client.add_cog(Generative(client))
+    client.add_cog(Generative(client, chat_log))

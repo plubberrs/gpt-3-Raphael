@@ -2,8 +2,6 @@ import discord
 from discord.ext import commands
 import os
 
-token = 'ODc2ODIzNTA4NzUwMDU3NTEy.YRprhw.qjUe7S2eZiR-B9sKeD_Pjqfu_Gk'
-
 client = commands.Bot(command_prefix = '.')
 
 @client.event
@@ -34,4 +32,4 @@ for filename in os.listdir('./cogs'):
   if filename.endswith('.py'):
     client.load_extension(f'cogs.{filename[:-3]}')
 
-client.run(token)
+client.run(os.getenv('TOKEN'))
