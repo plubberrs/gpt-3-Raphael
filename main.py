@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import os
 
-token = os.getenv('TOKEN')
+token = 'ODc2ODIzNTA4NzUwMDU3NTEy.YRprhw.qjUe7S2eZiR-B9sKeD_Pjqfu_Gk'
 
 client = commands.Bot(command_prefix = '.')
 
