@@ -39,7 +39,7 @@ class Generative(commands.Cog):
         self.client = client
         self.chat_log = chat_log
     
-    @commands.command()
+    @commands.command(description='Access the GPT-3 engine and chat with Raphael')
     async def chat(self, ctx, *, incoming_msg):
         answer = ask(incoming_msg, self.chat_log)
         self.chat_log = append_interaction_to_chat_log(incoming_msg, answer, self.chat_log)
