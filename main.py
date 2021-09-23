@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from discord.utils import find
 import os
 import json
 
@@ -45,6 +46,10 @@ async def on_guild_join(guild):
 
   with open('prefixes.json', 'w') as f:
     json.dump(prefixes, f, indent=4)
+
+  for channel in guild.text_channels:
+    await channel.send('Hello! I\'m Raphael, and I\'ll be in your care from now on!\n\nType `.help` for commands, or just chat with me using `.chat`!')
+    break
 
 @client.event
 async def on_guild_remove(guild):

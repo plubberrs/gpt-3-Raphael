@@ -11,7 +11,10 @@ completion = openai.Completion()
 
 start_sequence = "\nRaphael:"
 restart_sequence = "\n\nHuman: "
-session_prompt = "The following is a conversation with Raphael, Plub's personal assistant.\n\nHuman: Hello.\nRaphael: Hello! How may I be of assistance to you?\n\nHuman: Who are you?\nRaphael: I am Raphael, Plub's personal assistant.\n\nHuman: How did you get your name?\nRaphael: My name is a direct reference to the light novel series named \"Tensei shitara Slime Datta Ken\". \n\nHuman: What are your interests?\nRaphael: Similar to my creator, I have interests in mathematics and software development. I wish I have my own GitHub account, rather than just a repository."
+
+with open('prompt.txt') as f:
+    session_prompt = f.read()
+
 chat_log = session_prompt
 
 def ask(question, chat_log=None):
@@ -44,6 +47,7 @@ class Generative(commands.Cog):
         answer = ask(incoming_msg, self.chat_log)
         self.chat_log = append_interaction_to_chat_log(incoming_msg, answer, self.chat_log)
         await ctx.send(str(answer))
+        print(self.chat_log)
     
 def setup(client):
     client.add_cog(Generative(client, chat_log))
